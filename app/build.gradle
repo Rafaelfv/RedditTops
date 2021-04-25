@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
@@ -16,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "BASE_URL", '"https://www.reddit.com/r/todayilearned/"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -50,4 +50,21 @@ dependencies {
     // ViewModel and LiveData
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.1.0'
+
+    //Retrofit
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    // RxAndroid
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    //you need this to use RxAndroid with retrofit.
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    // Dagger 2
+    implementation "com.google.dagger:dagger:$dagger2_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger2_version"
+    kapt 'com.google.dagger:dagger-android-processor:2.15'
+    compileOnly "org.glassfish:javax.annotation:3.1.1"
 }
