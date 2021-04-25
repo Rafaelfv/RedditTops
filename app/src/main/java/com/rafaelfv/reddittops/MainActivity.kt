@@ -1,18 +1,35 @@
 package com.rafaelfv.reddittops
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.FrameLayout
+import com.rafaelfv.reddittops.ui.fragments.FragmentListTop
+import com.rafaelfv.reddittops.utils.FRAGMENT_TAG_LIST_TOP
+import com.rafaelfv.reddittops.utils.setFragment
 
 class MainActivity : AppCompatActivity() {
+
+    /**
+     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
+     * device.
+     */
+    private var twoPane: Boolean = false
+    private var TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        twoPane = findViewById<FrameLayout>(R.id.frameDetailTop) != null
+        this.supportFragmentManager.setFragment(
+            fragment = FragmentListTop(),
+            R.id.frameListTop,
+            FRAGMENT_TAG_LIST_TOP
+        )
 
     }
 
@@ -31,4 +48,5 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }
