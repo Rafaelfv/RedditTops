@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import com.rafaelfv.reddittops.ui.fragments.FragmentDetailTop
 import com.rafaelfv.reddittops.ui.fragments.FragmentListTop
+import com.rafaelfv.reddittops.utils.FRAGMENT_TAG_DETAIL_TOP
 import com.rafaelfv.reddittops.utils.FRAGMENT_TAG_LIST_TOP
 import com.rafaelfv.reddittops.utils.setFragment
 
@@ -27,10 +29,17 @@ class MainActivity : AppCompatActivity() {
         twoPane = findViewById<FrameLayout>(R.id.frameDetailTop) != null
         this.supportFragmentManager.setFragment(
             fragment = FragmentListTop(),
-            R.id.frameListTop,
-            FRAGMENT_TAG_LIST_TOP
+            id = R.id.frameListTop,
+            tag =FRAGMENT_TAG_LIST_TOP
         )
 
+        setupDetailFragmentIfApply()
+    }
+
+    private fun setupDetailFragmentIfApply() {
+        if (twoPane) {
+            this.supportFragmentManager.setFragment(fragment = FragmentDetailTop(), id = R.id.frameDetailTop, FRAGMENT_TAG_DETAIL_TOP)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
