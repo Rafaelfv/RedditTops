@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_top"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="4dp"
+    app:cardUseCompatPadding="true"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".02" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".37" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".50" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".90" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineH1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineH2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".80" />
+
+
+        <ImageView
+            android:id="@+id/btn_dismiss_item_top"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@mipmap/ic_dismiss"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineH1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineV4"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="6dp"
+            />
+
+        <ImageView
+            android:id="@+id/read_item_top"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@mipmap/ic_readed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineV4"
+            app:layout_constraintTop_toTopOf="@id/guidelineH2"
+            android:padding="3dp"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineH1"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV3"
+            app:layout_constraintStart_toStartOf="@id/guidelineV1"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/title_text_view"
+            android:id="@+id/title_item_top"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV4"
+            app:layout_constraintStart_toStartOf="@id/guidelineV3"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineH1"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/time_text_view"
+            android:layout_marginStart="5dp"
+            android:id="@+id/time_item_top"
+            />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV3"
+            app:layout_constraintStart_toStartOf="@id/guidelineV1"
+            app:layout_constraintTop_toTopOf="@id/guidelineH2"
+            style="@style/comments_text_view"
+            android:id="@+id/comments_item_top"
+            android:paddingStart="4dp"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="@id/guidelineV4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineV3"
+            app:layout_constraintTop_toTopOf="@id/guidelineH2"
+            style="@style/time_text_view"
+            android:layout_marginStart="5dp"
+            android:id="@+id/author_item_type"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineH2"
+            app:layout_constraintStart_toStartOf="@id/guidelineV2"
+            app:layout_constraintTop_toTopOf="@id/guidelineH1"
+            style="@style/content_text_view"
+            android:layout_marginStart="5dp"
+            android:id="@+id/content_item_type"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineH2"
+            app:layout_constraintEnd_toEndOf="@+id/guidelineV2"
+            app:layout_constraintStart_toStartOf="@id/guidelineV1"
+            app:layout_constraintTop_toTopOf="@id/guidelineH1"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="3dp"
+            app:cardUseCompatPadding="true"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/image_view_item_top"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

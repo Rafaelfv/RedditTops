@@ -25,10 +25,10 @@ class ViewModelListTop : BaseViewModel() {
     }
 
     fun getTopList() {
-        disposable = api.getListTop("${10*counter}")
+        disposable = api.getListTop("${10 * counter}")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { onSubscribeStart()}
+            .doOnSubscribe { onSubscribeStart() }
             .doOnTerminate { onTerminate() }
             .subscribe({ it -> onSuccessListTop(it) },
                 { error -> showError(error) })

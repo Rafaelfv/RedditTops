@@ -22,4 +22,41 @@
     <style name="Theme.RedditTops.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.RedditTops.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="title_text_view" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/semi_black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="comments_text_view" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/orange_reddit</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="time_text_view" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:gravity">center|end</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="content_text_view" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">normal</item>
+        <item name="android:padding">4dp</item>
+
+    </style>
 </resources>

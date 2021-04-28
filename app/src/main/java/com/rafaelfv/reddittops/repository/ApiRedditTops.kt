@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface ApiRedditTops {
 
     @Headers("Accept: application/json", "Connection: close")
-    @GET("top.json")
+    @GET("r/todayilearned/top.json")
     fun getListTop(@Query("limit") limit: String): Single<RedditTopResponse>
 
 }

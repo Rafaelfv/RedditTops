@@ -10,5 +10,10 @@
 
     <color name="orange_reddit">#FF5700</color>
     <color name="orangeed">#FF4500</color>
+    <color name="brown">#A16A3E</color>
+    <color name="semi_black">#222222</color>
+    <color name="pale_gray">#EFEFED</color>
+    <color name="gray">#A5A4A4</color>
+    <color name="dark_gray">#A5A4A4</color>
 
 </resources>
