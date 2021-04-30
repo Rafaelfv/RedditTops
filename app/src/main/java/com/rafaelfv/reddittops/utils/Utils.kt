@@ -30,3 +30,10 @@ fun removeFragment(fragmentManager: FragmentManager, fragment: Fragment) {
         .remove(fragment)
         .commitAllowingStateLoss()
 }
+
+
+fun addOne(number: Int): Int {
+    var num = number
+    num += 1
+    return num
+}

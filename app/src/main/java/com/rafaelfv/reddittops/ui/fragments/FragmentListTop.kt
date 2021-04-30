@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.rafaelfv.reddittops.R
 import com.rafaelfv.reddittops.repository.model.Children
 import com.rafaelfv.reddittops.ui.activities.AdapterItemTop
@@ -19,11 +20,18 @@ class FragmentListTop : Fragment() {
     private lateinit var viewModel: ViewModelListTop
     private lateinit var adapter: AdapterItemTop
     private var listTops: MutableList<Children> = ArrayList()
+    private var bottomPosition = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ViewModelListTop::class.java)
-        adapter = AdapterItemTop(listTops)
+        adapter = AdapterItemTop(listTops, object : AdapterItemTop.OnEventItemTop {
+            override fun onBottomScroll() {
+                bottomPosition = true
+            }
+
+        })
     }
 
     override fun onCreateView(
@@ -36,6 +44,18 @@ class FragmentListTop : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        recyclerview_list_top.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                if (!recyclerView.canScrollVertically(1) && bottomPosition) {
+                    bottomPosition = false
+                    viewModel.getTopListApi()
+                }
+            }
+        })
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

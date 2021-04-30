@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import androidx.lifecycle.ViewModelProviders
 import com.rafaelfv.reddittops.ui.fragments.FragmentDetailTop
 import com.rafaelfv.reddittops.ui.fragments.FragmentListTop
 import com.rafaelfv.reddittops.utils.FRAGMENT_TAG_DETAIL_TOP
 import com.rafaelfv.reddittops.utils.FRAGMENT_TAG_LIST_TOP
 import com.rafaelfv.reddittops.utils.setFragment
+import com.rafaelfv.reddittops.viewModel.BaseViewModel
+import com.rafaelfv.reddittops.viewModel.ViewModelMainActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,15 +22,17 @@ class MainActivity : AppCompatActivity() {
      */
     private var twoPane: Boolean = false
     private var TAG = "MainActivity"
+    private lateinit var viewModel: ViewModelMainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+        viewModel = ViewModelProviders.of(this).get(ViewModelMainActivity::class.java)
         twoPane = findViewById<FrameLayout>(R.id.frameDetailTop) != null
         this.supportFragmentManager.setFragment(
-            fragment = FragmentListTop(),
+            fragment = viewModel.getFragmentListTop(),
             id = R.id.frameListTop,
             tag =FRAGMENT_TAG_LIST_TOP
         )

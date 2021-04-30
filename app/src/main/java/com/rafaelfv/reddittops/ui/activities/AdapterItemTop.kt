@@ -9,7 +9,12 @@ import com.bumptech.glide.Glide
 import com.rafaelfv.reddittops.R
 import com.rafaelfv.reddittops.repository.model.Children
 
-class AdapterItemTop(var listTop: List<Children>) : RecyclerView.Adapter<ItemTopViewHolder>() {
+class AdapterItemTop(var listTop: List<Children>, val listener: OnEventItemTop) :
+    RecyclerView.Adapter<ItemTopViewHolder>() {
+
+    interface OnEventItemTop {
+        fun onBottomScroll()
+    }
 
     private lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemTopViewHolder {
@@ -26,7 +31,11 @@ class AdapterItemTop(var listTop: List<Children>) : RecyclerView.Adapter<ItemTop
         holder.imageTop.setImageFromUrl(listTop[position].data.thumbnail)
         holder.contentTop.text = listTop[position].data.title
 
-
+        if (listTop.isNotEmpty()) {
+            if (position == (listTop.size - 1)) {
+                listener.onBottomScroll()
+            }
+        }
     }
 
     override fun getItemCount(): Int = listTop.size

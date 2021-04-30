@@ -1,5 +1,6 @@
 package com.rafaelfv.reddittops.viewModel
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +23,7 @@ class ViewModelListTop : BaseViewModel() {
     private var listTopsLiveData: MutableLiveData<List<Children>> = MutableLiveData()
     private var listTops: MutableList<Children> = ArrayList()
 
-    private var counter = 1
+    var counter = 1
 
 
     init {
@@ -35,7 +36,7 @@ class ViewModelListTop : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { onSubscribeStart() }
             .doOnTerminate { onTerminate() }
-            .subscribe({ it -> onSuccessListTop(it) },
+            .subscribe({ onSuccessListTop(it) },
                 { error -> showError(error) })
     }
 
@@ -46,14 +47,20 @@ class ViewModelListTop : BaseViewModel() {
     private fun onSuccessListTop(it: Response<RedditTopResponse>) {
         if (it.isSuccessful) {
             if (!it.body()?.data?.children.isNullOrEmpty()) {
-                it.body()?.data?.children?.let { children -> listTops.addAll(children) }
-                listTopsLiveData.postValue(listTops)
+                it.body()?.data?.children?.let { children ->
+                    val sublist = children.subList((counter - 1) * 10, children.size)
+                    Log.d("viewModelTops", "sublist size = ${sublist.size}")
+                    listTops.addAll(sublist)
+                }
+                Log.d("viewModelTops", "list size = ${listTops.size}")
+                listTopsLiveData.postValue(listTops.subList((counter - 1) * 10, listTops.size))
+                counter++
             }
         }
 
     }
 
-    fun getListTop() : LiveData<List<Children>> = listTopsLiveData
+    fun getListTop(): LiveData<List<Children>> = listTopsLiveData
 
     private fun onTerminate() {
         loadingVisibility.value = View.GONE
