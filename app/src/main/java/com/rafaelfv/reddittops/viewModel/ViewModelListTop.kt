@@ -42,6 +42,7 @@ class ViewModelListTop : BaseViewModel() {
 
     private fun showError(error: Throwable?) {
         error?.printStackTrace()
+
     }
 
     private fun onSuccessListTop(it: Response<RedditTopResponse>) {
@@ -61,6 +62,7 @@ class ViewModelListTop : BaseViewModel() {
     }
 
     fun getListTop(): LiveData<List<Children>> = listTopsLiveData
+    fun getProgressVisibility(): LiveData<Int> = loadingVisibility
 
     private fun onTerminate() {
         loadingVisibility.value = View.GONE

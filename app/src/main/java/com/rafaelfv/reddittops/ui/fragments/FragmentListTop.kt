@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_list_top.*
 
 class FragmentListTop : Fragment() {
 
-    private lateinit var viewModel: ViewModelListTop
+    private var viewModel: ViewModelListTop? = null
     private lateinit var adapter: AdapterItemTop
     private var listTops: MutableList<Children> = ArrayList()
     private var bottomPosition = false
@@ -25,7 +25,9 @@ class FragmentListTop : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ViewModelListTop::class.java)
+        if (viewModel == null) {
+            viewModel = ViewModelProviders.of(this).get(ViewModelListTop::class.java)
+        }
         adapter = AdapterItemTop(listTops, object : AdapterItemTop.OnEventItemTop {
             override fun onBottomScroll() {
                 bottomPosition = true
@@ -51,7 +53,7 @@ class FragmentListTop : Fragment() {
 
                 if (!recyclerView.canScrollVertically(1) && bottomPosition) {
                     bottomPosition = false
-                    viewModel.getTopListApi()
+                    viewModel?.getTopListApi()
                 }
             }
         })
@@ -63,11 +65,18 @@ class FragmentListTop : Fragment() {
         recyclerview_list_top.adapter = adapter
 
         val listObserver = Observer<List<Children>> { list ->
-            listTops.addAll(list)
-            adapter.notifyDataSetChanged()
+            if (!listTops.containsAll(list)) {
+                listTops.addAll(list)
+                adapter.notifyDataSetChanged()
+            }
         }
 
-        viewModel.getListTop().observe(viewLifecycleOwner, listObserver)
+        val progressObserver = Observer<Int> { visibility ->
+            progress_bar_list_tops.visibility = visibility
+        }
+
+        viewModel?.getProgressVisibility()?.observe(viewLifecycleOwner, progressObserver)
+        viewModel?.getListTop()?.observe(viewLifecycleOwner, listObserver)
     }
 
 }
