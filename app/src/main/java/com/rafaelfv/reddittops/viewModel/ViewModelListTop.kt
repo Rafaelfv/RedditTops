@@ -49,19 +49,29 @@ class ViewModelListTop : BaseViewModel() {
         if (it.isSuccessful) {
             if (!it.body()?.data?.children.isNullOrEmpty()) {
                 it.body()?.data?.children?.let { children ->
-                    val sublist = children.subList((counter - 1) * 10, children.size)
-                    Log.d("viewModelTops", "sublist size = ${sublist.size}")
-                    listTops.addAll(sublist)
+                    if(children.size >= (counter - 1) * 10){
+                        val sublist = children.subList((counter - 1) * 10, children.size)
+                        Log.d("viewModelTops", "sublist size = ${sublist.size}")
+                        listTops.addAll(sublist)
+                        listTopsLiveData.postValue(sublist)
+                        counter++
+
+                    }
                 }
-                Log.d("viewModelTops", "list size = ${listTops.size}")
-                listTopsLiveData.postValue(listTops.subList((counter - 1) * 10, listTops.size))
-                counter++
             }
         }
 
     }
 
+    fun removeTop(children: Children) {
+        listTops.remove(children)
+        Log.d("viewModelTops", "Remove -> list size = ${listTops.size}")
+
+        listTopsLiveData.postValue(listTops)
+    }
+
     fun getListTop(): LiveData<List<Children>> = listTopsLiveData
+
     fun getProgressVisibility(): LiveData<Int> = loadingVisibility
 
     private fun onTerminate() {

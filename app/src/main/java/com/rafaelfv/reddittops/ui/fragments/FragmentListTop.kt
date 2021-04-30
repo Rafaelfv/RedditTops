@@ -33,6 +33,13 @@ class FragmentListTop : Fragment() {
                 bottomPosition = true
             }
 
+            override fun dismissTop(position: Int, children: Children) {
+                listTops.remove(children)
+                adapter.notifyItemRemoved(position)
+                adapter.notifyItemRangeChanged(position, listTops.size)
+                viewModel?.removeTop(children)
+            }
+
         })
     }
 

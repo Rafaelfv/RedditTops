@@ -9,11 +9,12 @@ import com.bumptech.glide.Glide
 import com.rafaelfv.reddittops.R
 import com.rafaelfv.reddittops.repository.model.Children
 
-class AdapterItemTop(var listTop: List<Children>, val listener: OnEventItemTop) :
+class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventItemTop) :
     RecyclerView.Adapter<ItemTopViewHolder>() {
 
     interface OnEventItemTop {
         fun onBottomScroll()
+        fun dismissTop(position: Int, children: Children)
     }
 
     private lateinit var context: Context
@@ -30,6 +31,8 @@ class AdapterItemTop(var listTop: List<Children>, val listener: OnEventItemTop) 
         holder.commentsTop.text = "${listTop[position].data.num_comments} comments"
         holder.imageTop.setImageFromUrl(listTop[position].data.thumbnail)
         holder.contentTop.text = listTop[position].data.title
+
+        holder.dismissTop.setOnClickListener { listener.dismissTop(position, listTop[position])}
 
         if (listTop.isNotEmpty()) {
             if (position == (listTop.size - 1)) {
