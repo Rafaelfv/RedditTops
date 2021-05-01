@@ -1,5 +1,9 @@
 package com.rafaelfv.reddittops.repository.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class DataChildren(
     val allow_live_comments: Boolean,
     val archived: Boolean,
@@ -18,7 +22,6 @@ data class DataChildren(
     val downs: Int,
     val edited: Boolean,
     val gilded: Int,
-    val gildings: Gildings,
     val hidden: Boolean,
     val hide_score: Boolean,
     val id: String,
@@ -36,7 +39,6 @@ data class DataChildren(
     val link_flair_text_color: String,
     val link_flair_type: String,
     val locked: Boolean,
-    val media_embed: MediaEmbed,
     val media_only: Boolean,
     val name: String,
     val no_follow: Boolean,
@@ -50,7 +52,6 @@ data class DataChildren(
     val quarantine: Boolean,
     val saved: Boolean,
     val score: Int,
-    val secure_media_embed: SecureMediaEmbed,
     val selftext: String,
     val selftext_html: String,
     val send_replies: Boolean,
@@ -70,4 +71,4 @@ data class DataChildren(
     val visited: Boolean,
     val whitelist_status: String,
     val wls: Int
-)
+): Parcelable

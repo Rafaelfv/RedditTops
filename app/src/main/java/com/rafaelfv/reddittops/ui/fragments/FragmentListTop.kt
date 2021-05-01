@@ -1,5 +1,6 @@
 package com.rafaelfv.reddittops.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rafaelfv.reddittops.R
 import com.rafaelfv.reddittops.repository.model.Children
 import com.rafaelfv.reddittops.ui.activities.AdapterItemTop
+import com.rafaelfv.reddittops.utils.ListTopCallback
 import com.rafaelfv.reddittops.viewModel.ViewModelListTop
 import kotlinx.android.synthetic.main.fragment_list_top.*
 
@@ -22,6 +24,7 @@ class FragmentListTop : Fragment() {
     private lateinit var adapter: AdapterItemTop
     private var listTops: MutableList<Children> = ArrayList()
     private var bottomPosition = false
+    private lateinit var callback: ListTopCallback
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +43,10 @@ class FragmentListTop : Fragment() {
                 adapter.notifyItemRemoved(position)
                 adapter.notifyItemRangeChanged(position, listTops.size)
                 viewModel?.removeTop(children)
+            }
+
+            override fun onTopSelected(children: Children) {
+                callback.onItemSelected(children)
             }
 
         })
@@ -123,4 +130,8 @@ class FragmentListTop : Fragment() {
         viewModel?.getListTop()?.observe(viewLifecycleOwner, listObserver)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = context as ListTopCallback
+    }
 }

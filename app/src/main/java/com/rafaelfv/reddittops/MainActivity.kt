@@ -1,27 +1,28 @@
 package com.rafaelfv.reddittops
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
+import com.rafaelfv.reddittops.repository.model.Children
 import com.rafaelfv.reddittops.ui.fragments.FragmentDetailTop
 import com.rafaelfv.reddittops.ui.fragments.FragmentListTop
-import com.rafaelfv.reddittops.utils.FRAGMENT_TAG_DETAIL_TOP
-import com.rafaelfv.reddittops.utils.FRAGMENT_TAG_LIST_TOP
-import com.rafaelfv.reddittops.utils.setFragment
+import com.rafaelfv.reddittops.utils.*
 import com.rafaelfv.reddittops.viewModel.BaseViewModel
 import com.rafaelfv.reddittops.viewModel.ViewModelMainActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ListTopCallback, DetailTopCallback {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private var twoPane: Boolean = false
-    private var TAG = "MainActivity"
+    private var TAG = "MainActivityX"
     private lateinit var viewModel: ViewModelMainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         this.supportFragmentManager.setFragment(
             fragment = viewModel.getFragmentListTop(),
             id = R.id.frameListTop,
-            tag =FRAGMENT_TAG_LIST_TOP
+            tag = FRAGMENT_TAG_LIST_TOP
         )
 
         setupDetailFragmentIfApply()
@@ -42,7 +43,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupDetailFragmentIfApply() {
         if (twoPane) {
-            this.supportFragmentManager.setFragment(fragment = FragmentDetailTop(), id = R.id.frameDetailTop, FRAGMENT_TAG_DETAIL_TOP)
+            this.supportFragmentManager.setFragment(
+                fragment = viewModel.getFragmentDetailTop(),
+                id = R.id.frameDetailTop, FRAGMENT_TAG_DETAIL_TOP
+            )
+        } else if(viewModel.currentDetailAdded){
+            refreshChildrenView()
         }
     }
 
@@ -60,6 +66,39 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onItemSelected(children: Children) {
+        viewModel.setChildren(children)
+        refreshChildrenView()
+    }
+
+    private fun refreshChildrenView() {
+        if (twoPane) {
+
+        } else {
+            viewModel.currentDetailAdded = true
+            val fragmentDetailTop = viewModel.getFragmentDetailTop()
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_CHILDREN, viewModel.getChildren())
+            fragmentDetailTop.arguments = bundle
+            supportFragmentManager.addFragment(
+                fragmentDetailTop,
+                R.id.frameListTop,
+                FRAGMENT_TAG_DETAIL_TOP
+            )
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if(viewModel.currentDetailAdded) {
+            viewModel.currentDetailAdded = false
+        }
+    }
+
+    override fun onDetachFragmentDetail() {
+
     }
 
 }

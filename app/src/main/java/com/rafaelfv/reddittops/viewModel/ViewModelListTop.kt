@@ -25,7 +25,6 @@ class ViewModelListTop : BaseViewModel() {
 
     var counter = 1
 
-
     init {
         getTopListApi()
     }

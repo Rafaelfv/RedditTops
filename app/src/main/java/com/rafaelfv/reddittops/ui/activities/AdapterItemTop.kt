@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rafaelfv.reddittops.R
 import com.rafaelfv.reddittops.repository.model.Children
+import com.rafaelfv.reddittops.utils.setImageFromUrl
 
 class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventItemTop) :
     RecyclerView.Adapter<ItemTopViewHolder>() {
@@ -15,6 +16,7 @@ class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventI
     interface OnEventItemTop {
         fun onBottomScroll()
         fun dismissTop(position: Int, children: Children)
+        fun onTopSelected(children: Children)
     }
 
     private lateinit var context: Context
@@ -39,16 +41,12 @@ class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventI
                 listener.onBottomScroll()
             }
         }
+
+        holder.container.setOnClickListener { listener.onTopSelected(listTop[position]) }
     }
 
     override fun getItemCount(): Int = listTop.size
 
-    private fun ImageView.setImageFromUrl(url: String) =
-        Glide
-            .with(context)
-            .load(url)
-            .centerCrop()
-            .placeholder(R.drawable.empty_image)
-            .into(this)
+
 
 }
