@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -25,6 +26,7 @@ class FragmentListTop : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         if (viewModel == null) {
             viewModel = ViewModelProviders.of(this).get(ViewModelListTop::class.java)
         }
@@ -65,6 +67,40 @@ class FragmentListTop : Fragment() {
             }
         })
 
+        button_dismiss_all.setOnClickListener {
+
+            val fadeOut = AlphaAnimation(1f, 0f)
+            fadeOut.interpolator = AccelerateInterpolator() //and this
+            fadeOut.startOffset = 1000
+            fadeOut.duration = 1000
+
+            val fadeIn = AlphaAnimation(0f, 1f)
+            fadeIn.interpolator = DecelerateInterpolator() //add this
+            fadeIn.duration = 1000
+
+            val animation = AnimationSet(true) //change to false
+            animation.addAnimation(fadeOut)
+            animation.addAnimation(fadeIn)
+
+            animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
+
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    recyclerview_list_top.visibility = View.GONE
+                    listTops.clear()
+                    adapter.notifyDataSetChanged()
+
+                }
+
+                override fun onAnimationRepeat(animation: Animation?) {
+
+                }
+
+            })
+            recyclerview_list_top.startAnimation(animation)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -75,6 +111,7 @@ class FragmentListTop : Fragment() {
             if (!listTops.containsAll(list)) {
                 listTops.addAll(list)
                 adapter.notifyDataSetChanged()
+                viewModel?.removeAll()
             }
         }
 

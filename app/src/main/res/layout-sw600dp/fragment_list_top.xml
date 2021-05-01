@@ -14,6 +14,7 @@
         android:id="@+id/recyclerview_list_top"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_top"
+        android:layout_above="@+id/button_dismiss_all"
         />
 
     <ProgressBar
@@ -22,6 +23,16 @@
         android:layout_centerInParent="true"
         android:id="@+id/progress_bar_list_tops"
         android:visibility="gone"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        style="@style/button_dismiss_all"
+        android:background="@color/dark_gray"
+        android:text="@string/button_dismiss_all"
+        android:id="@+id/button_dismiss_all"
         />
 
 </RelativeLayout>

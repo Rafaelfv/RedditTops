@@ -65,8 +65,11 @@ class ViewModelListTop : BaseViewModel() {
 
     fun removeTop(children: Children) {
         listTops.remove(children)
-        Log.d("viewModelTops", "Remove -> list size = ${listTops.size}")
+        listTopsLiveData.postValue(listTops)
+    }
 
+    fun removeAll( ) {
+        listTops.clear()
         listTopsLiveData.postValue(listTops)
     }
 
