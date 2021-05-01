@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), ListTopCallback, DetailTopCallback {
 
     private fun refreshChildrenView() {
         if (twoPane) {
-
+            viewModel.getChildren()?.let { viewModel.getFragmentDetailTop().setupViews(it) }
         } else {
             viewModel.currentDetailAdded = true
             val fragmentDetailTop = viewModel.getFragmentDetailTop()

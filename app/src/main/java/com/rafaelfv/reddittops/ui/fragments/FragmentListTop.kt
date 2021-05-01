@@ -26,7 +26,6 @@ class FragmentListTop : Fragment() {
     private var bottomPosition = false
     private lateinit var callback: ListTopCallback
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

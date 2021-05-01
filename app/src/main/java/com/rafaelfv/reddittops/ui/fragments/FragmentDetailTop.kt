@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_detail_top.*
 class FragmentDetailTop : Fragment() {
 
     private var viewModel: ViewModelDetailTop? = null
-    private lateinit var children: Children
+    private var children: Children? = null
     private lateinit var callback: DetailTopCallback
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class FragmentDetailTop : Fragment() {
 
         if (arguments?.getParcelable<Children>(KEY_CHILDREN) != null) {
             children = arguments?.getParcelable<Children>(KEY_CHILDREN) as Children
-            viewModel?.setChildren(children)
+            //viewModel?.setChildren(children)
         } else {
             //children = viewModel?.getChildren() as Children
         }
@@ -45,7 +45,7 @@ class FragmentDetailTop : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupViews(children)
+        children?.let { setupViews(it) }
     }
 
     fun setupViews(children: Children) {
