@@ -6,5 +6,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Children(
     val data: DataChildren,
-    val kind: String
+    val kind: String,
+    var alreadyRead: Boolean = false
 ): Parcelable

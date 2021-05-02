@@ -84,4 +84,8 @@ class ViewModelListTop : BaseViewModel() {
         loadingVisibility.value = View.VISIBLE
     }
 
+    fun notifyItemRead(position: Int) {
+        listTops[position].alreadyRead = true
+    }
+
 }

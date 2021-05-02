@@ -2,10 +2,9 @@ package com.rafaelfv.reddittops.ui.activities
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.rafaelfv.reddittops.R
 import com.rafaelfv.reddittops.repository.model.Children
 import com.rafaelfv.reddittops.utils.setImageFromUrl
@@ -16,7 +15,7 @@ class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventI
     interface OnEventItemTop {
         fun onBottomScroll()
         fun dismissTop(position: Int, children: Children)
-        fun onTopSelected(children: Children)
+        fun onTopSelected(children: Children, position: Int)
     }
 
     private lateinit var context: Context
@@ -42,7 +41,18 @@ class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventI
             }
         }
 
-        holder.container.setOnClickListener { listener.onTopSelected(listTop[position]) }
+        holder.container.setOnClickListener {
+            listener.onTopSelected(listTop[position], position)
+            holder.readTopStatus.visibility = View.VISIBLE
+        }
+
+        if(listTop[position].alreadyRead){
+            holder.readTopStatus.visibility = View.VISIBLE
+        }else{
+            holder.readTopStatus.visibility = View.GONE
+        }
+
+
     }
 
     override fun getItemCount(): Int = listTop.size

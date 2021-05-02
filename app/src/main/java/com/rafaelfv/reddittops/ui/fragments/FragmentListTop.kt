@@ -44,8 +44,10 @@ class FragmentListTop : Fragment() {
                 viewModel?.removeTop(children)
             }
 
-            override fun onTopSelected(children: Children) {
+            override fun onTopSelected(children: Children, position: Int) {
                 callback.onItemSelected(children)
+                listTops[position].alreadyRead = true
+                viewModel?.notifyItemRead(position)
             }
 
         })
@@ -117,7 +119,6 @@ class FragmentListTop : Fragment() {
             if (!listTops.containsAll(list)) {
                 listTops.addAll(list)
                 adapter.notifyDataSetChanged()
-                viewModel?.removeAll()
             }
         }
 
