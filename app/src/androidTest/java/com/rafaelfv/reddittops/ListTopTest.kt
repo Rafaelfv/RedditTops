@@ -54,7 +54,7 @@ class ListTopTest {
     }
 
     @Test
-    fun paginatorTest() {
+    fun paginationTest() {
         listTop {
             Thread.sleep(4000)
             val count = getCountInRecycler()
