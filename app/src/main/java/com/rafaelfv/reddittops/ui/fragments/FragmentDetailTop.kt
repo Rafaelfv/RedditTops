@@ -36,7 +36,6 @@ class FragmentDetailTop : Fragment() {
         viewModel = ViewModelProviders.of(this).get(ViewModelDetailTop::class.java)
         if (arguments?.getParcelable<Children>(KEY_CHILDREN) != null) {
             children = arguments?.getParcelable<Children>(KEY_CHILDREN) as Children
-            download_top_detail.visibility = View.VISIBLE
         }
     }
 
