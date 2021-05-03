@@ -2,7 +2,6 @@ package com.rafaelfv.reddittops.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.rafaelfv.reddittops.R
 import com.rafaelfv.reddittops.repository.model.Children
-import com.rafaelfv.reddittops.ui.activities.AdapterItemTop
+import com.rafaelfv.reddittops.ui.adapters.AdapterItemTop
 import com.rafaelfv.reddittops.utils.ListTopCallback
 import com.rafaelfv.reddittops.viewModel.ViewModelListTop
 import kotlinx.android.synthetic.main.fragment_list_top.*

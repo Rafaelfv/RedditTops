@@ -3,6 +3,9 @@ package com.rafaelfv.reddittops.viewModel
 import androidx.lifecycle.ViewModel
 import com.rafaelfv.reddittops.MyApplication
 
+/**
+ * Base model to handle the injectors in each view model
+ */
 open class BaseViewModel : ViewModel() {
 
     init {

@@ -28,6 +28,9 @@ class ViewModelListTop : BaseViewModel() {
         getTopListApi()
     }
 
+    /**
+     * Function to get list tops from api
+     */
     fun getTopListApi() {
         disposable = api.getListTop("${10 * counter}")
             .subscribeOn(Schedulers.io())
@@ -40,7 +43,6 @@ class ViewModelListTop : BaseViewModel() {
 
     private fun showError(error: Throwable?) {
         error?.printStackTrace()
-
     }
 
     private fun onSuccessListTop(it: Response<RedditTopResponse>) {
@@ -56,7 +58,6 @@ class ViewModelListTop : BaseViewModel() {
                 }
             }
         }
-
     }
 
     fun removeTop(children: Children) {
@@ -82,6 +83,9 @@ class ViewModelListTop : BaseViewModel() {
         loadingVisibility.value = View.VISIBLE
     }
 
+    /**
+     * Action from Adapter recycler view to set flag read for each top
+     */
     fun notifyItemRead(position: Int) {
         listTops[position].alreadyRead = true
     }

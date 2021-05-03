@@ -10,6 +10,10 @@ import retrofit2.http.Query
 
 interface ApiRedditTops {
 
+    /**
+     * function to get listTop from api
+     * @param limit number for size list
+     */
     @Headers("Accept: application/json", "Connection: close")
     @GET("r/todayilearned/top.json")
     fun getListTop(@Query("limit") limit: String): Single<Response<RedditTopResponse>>

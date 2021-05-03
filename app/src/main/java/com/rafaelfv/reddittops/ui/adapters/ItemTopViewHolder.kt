@@ -1,4 +1,4 @@
-package com.rafaelfv.reddittops.ui.activities
+package com.rafaelfv.reddittops.ui.adapters
 
 import android.view.View
 import android.widget.ImageView

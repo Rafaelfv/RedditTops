@@ -6,7 +6,7 @@ import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import androidx.test.runner.lifecycle.Stage
 
 class CurrentActivity {
-    companion object{
+    companion object {
         var currentActivity: Activity? = null
         fun getActivityInstance(): Activity? {
             getInstrumentation().runOnMainSync {

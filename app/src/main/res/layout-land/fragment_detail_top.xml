@@ -76,6 +76,7 @@
         app:layout_constraintEnd_toEndOf="@+id/guidelineV2"
         app:layout_constraintTop_toTopOf="@id/guidelineH1"
         android:id="@+id/download_top_detail"
+        android:visibility="gone"
         />
 
     <TextView

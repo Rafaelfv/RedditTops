@@ -20,7 +20,8 @@ import org.hamcrest.Matcher
 
 open class BaseTestRobot {
 
-    fun clickButton(resId: Int): ViewInteraction = onView((withId(resId))).perform(ViewActions.click())
+    fun clickButton(resId: Int): ViewInteraction =
+        onView((withId(resId))).perform(ViewActions.click())
 
     fun Int.clickOnRecyclerAtPosition(position: Int) {
         Espresso.onView(ViewMatchers.withId(this)).perform(
@@ -50,10 +51,11 @@ open class BaseTestRobot {
         }
     }
 
-    fun pressBackButton(){
+    fun pressBackButton() {
         Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
     }
 
     fun Int.verifyIsDisplayed(): ViewInteraction =
-        Espresso.onView(ViewMatchers.withId(this)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withId(this))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 }

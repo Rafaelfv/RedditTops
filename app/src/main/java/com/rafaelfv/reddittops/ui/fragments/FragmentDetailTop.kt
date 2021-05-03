@@ -36,6 +36,7 @@ class FragmentDetailTop : Fragment() {
         viewModel = ViewModelProviders.of(this).get(ViewModelDetailTop::class.java)
         if (arguments?.getParcelable<Children>(KEY_CHILDREN) != null) {
             children = arguments?.getParcelable<Children>(KEY_CHILDREN) as Children
+            download_top_detail.visibility = View.VISIBLE
         }
     }
 
@@ -67,6 +68,8 @@ class FragmentDetailTop : Fragment() {
         image_top_detail.setImageFromUrl(children.data.thumbnail)
         title_top_detail.text = children.data.name
         content_top_detail.text = children.data.title
+        download_top_detail.visibility = View.VISIBLE
+        this.children = children
     }
 
     fun saveImageOnDevice() {

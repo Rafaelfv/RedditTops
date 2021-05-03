@@ -1,4 +1,4 @@
-package com.rafaelfv.reddittops.ui.activities
+package com.rafaelfv.reddittops.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -33,7 +33,7 @@ class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventI
         holder.imageTop.setImageFromUrl(listTop[position].data.thumbnail)
         holder.contentTop.text = listTop[position].data.title
 
-        holder.dismissTop.setOnClickListener { listener.dismissTop(position, listTop[position])}
+        holder.dismissTop.setOnClickListener { listener.dismissTop(position, listTop[position]) }
 
         if (listTop.isNotEmpty()) {
             if (position == (listTop.size - 1)) {
@@ -46,15 +46,14 @@ class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventI
             holder.readTopStatus.visibility = View.VISIBLE
         }
 
-        if(listTop[position].alreadyRead){
+        if (listTop[position].alreadyRead) {
             holder.readTopStatus.visibility = View.VISIBLE
-        }else{
+        } else {
             holder.readTopStatus.visibility = View.GONE
         }
     }
 
     override fun getItemCount(): Int = listTop.size
-
 
 
 }

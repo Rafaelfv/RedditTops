@@ -13,6 +13,12 @@ import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.rafaelfv.reddittops.R
 
+/**
+ * Function to replace a fragment
+ * @param fragment is fragment to set
+ * @param id is the id view to replace
+ * @param tag is the tag for the fragment to set
+ */
 fun FragmentManager.setFragment(
     fragment: Fragment,
     id: Int,
