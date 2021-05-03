@@ -67,6 +67,17 @@
         android:id="@+id/image_top_detail"
         />
 
+
+    <ImageView
+        android:src="@mipmap/ic_download"
+        android:scaleType="centerInside"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineV2"
+        app:layout_constraintTop_toTopOf="@id/guidelineH1"
+        android:id="@+id/download_top_detail"
+        />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"

@@ -11,4 +11,14 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="button_dismiss_all">Dismiss all</string>
+    <string name="permission_storage_denied">We can not save image, please accept the permission</string>
+    <string name="no_image_available">No image available</string>
+
+
+    <!-- authorities -->
+    <string name="file_provider_authorities">com.rafaelfv.reddittops.ui.fragmentsst.provider</string>
+
+    <!-- Image download -->
+    <string name="download_successfully">The image is in your gallery now</string>
+    <string name="download_not_successfully">Something went wrong, try again.</string>
 </resources>

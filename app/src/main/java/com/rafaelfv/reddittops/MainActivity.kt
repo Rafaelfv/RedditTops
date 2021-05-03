@@ -1,11 +1,13 @@
 package com.rafaelfv.reddittops
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import com.rafaelfv.reddittops.repository.model.Children
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity(), ListTopCallback, DetailTopCallback {
                 fragment = viewModel.getFragmentDetailTop(),
                 id = R.id.frameDetailTop, FRAGMENT_TAG_DETAIL_TOP
             )
-        } else if(viewModel.currentDetailAdded){
+        } else if (viewModel.currentDetailAdded) {
             refreshChildrenView()
         }
     }
@@ -90,9 +92,33 @@ class MainActivity : AppCompatActivity(), ListTopCallback, DetailTopCallback {
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode) {
+
+            REQUEST_CODE_PERMISSION_WRITE_EXTERNAL -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    viewModel.getFragmentDetailTop().saveImageOnDevice()
+                } else {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.permission_storage_denied),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
-        if(viewModel.currentDetailAdded) {
+        if (viewModel.currentDetailAdded) {
             viewModel.currentDetailAdded = false
         }
     }

@@ -1,6 +1,13 @@
 package com.rafaelfv.reddittops.utils
 
+import android.content.Context
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
@@ -41,6 +48,21 @@ fun addOne(number: Int): Int {
     return num
 }
 
+fun String.isPermissionOk(context: Context): Boolean {
+    return ContextCompat.checkSelfPermission(
+        context,
+        this
+    ) == PackageManager.PERMISSION_GRANTED
+}
+
+fun askForPermission(activity: AppCompatActivity, permission: String, codeRequest: Int) {
+    activity.let {
+        ActivityCompat.requestPermissions(
+            it,
+            arrayOf(permission), codeRequest
+        )
+    }
+}
 
 fun ImageView.setImageFromUrl(url: String) =
     Glide
@@ -49,3 +71,9 @@ fun ImageView.setImageFromUrl(url: String) =
         .centerCrop()
         .placeholder(R.drawable.empty_image)
         .into(this)
+
+
+fun ImageView.getBitmapFromImageView(): Bitmap {
+    this.invalidate()
+    return this.drawable.toBitmap()
+}
