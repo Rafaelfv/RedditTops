@@ -68,6 +68,7 @@ class ViewModelListTop : BaseViewModel() {
     }
 
     fun removeAll( ) {
+        counter = 1
         listTops.clear()
         listTopsLiveData.postValue(listTops)
     }

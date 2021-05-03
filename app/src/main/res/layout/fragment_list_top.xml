@@ -6,16 +6,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_list_top"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/pale_gray"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_top"
-        android:layout_above="@+id/button_dismiss_all"
+        android:layout_height="match_parent">
 
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_list_top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/button_dismiss_all"
+            android:background="@color/pale_gray"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_top" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar_list_tops"
@@ -25,12 +30,11 @@
         android:visibility="gone" />
 
     <Button
+        android:id="@+id/button_dismiss_all"
+        style="@style/button_dismiss_all"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        style="@style/button_dismiss_all"
         android:background="@color/dark_gray"
-        android:text="@string/button_dismiss_all"
-        android:id="@+id/button_dismiss_all"
-        />
+        android:text="@string/button_dismiss_all" />
 </RelativeLayout>

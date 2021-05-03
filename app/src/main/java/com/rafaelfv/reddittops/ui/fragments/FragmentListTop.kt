@@ -2,6 +2,7 @@ package com.rafaelfv.reddittops.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.rafaelfv.reddittops.R
 import com.rafaelfv.reddittops.repository.model.Children
 import com.rafaelfv.reddittops.ui.activities.AdapterItemTop
@@ -18,7 +20,7 @@ import com.rafaelfv.reddittops.viewModel.ViewModelListTop
 import kotlinx.android.synthetic.main.fragment_list_top.*
 
 
-class FragmentListTop : Fragment() {
+class FragmentListTop : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private var viewModel: ViewModelListTop? = null
     private lateinit var adapter: AdapterItemTop
@@ -75,6 +77,8 @@ class FragmentListTop : Fragment() {
             }
         })
 
+        swipe_layout.setOnRefreshListener(this)
+
         button_dismiss_all.setOnClickListener {
 
             val fadeOut = AlphaAnimation(1f, 0f)
@@ -118,6 +122,7 @@ class FragmentListTop : Fragment() {
             if (!listTops.containsAll(list)) {
                 listTops.addAll(list)
                 adapter.notifyDataSetChanged()
+                swipe_layout.isRefreshing = false
             }
         }
 
@@ -132,5 +137,13 @@ class FragmentListTop : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callback = context as ListTopCallback
+    }
+
+    override fun onRefresh() {
+        Log.d(tag, "on refresh")
+        listTops.clear()
+        adapter.notifyDataSetChanged()
+        viewModel?.removeAll()
+        viewModel?.getTopListApi()
     }
 }
