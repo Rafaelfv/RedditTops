@@ -32,17 +32,14 @@ class FragmentDetailTop : Fragment() {
 
     private var viewModel: ViewModelDetailTop? = null
     private var children: Children? = null
-    private lateinit var callback: DetailTopCallback
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(ViewModelDetailTop::class.java)
-
         if (arguments?.getParcelable<Children>(KEY_CHILDREN) != null) {
             children = arguments?.getParcelable<Children>(KEY_CHILDREN) as Children
         }
-        val a = 1
     }
 
     override fun onCreateView(
@@ -148,15 +145,5 @@ class FragmentDetailTop : Fragment() {
 
             }
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        callback = context as DetailTopCallback
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        callback.onDetachFragmentDetail()
     }
 }

@@ -140,7 +140,6 @@ class FragmentListTop : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun onRefresh() {
-        Log.d(tag, "on refresh")
         listTops.clear()
         adapter.notifyDataSetChanged()
         viewModel?.removeAll()

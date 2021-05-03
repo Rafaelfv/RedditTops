@@ -51,8 +51,6 @@ class AdapterItemTop(var listTop: List<Children>, private val listener: OnEventI
         }else{
             holder.readTopStatus.visibility = View.GONE
         }
-
-
     }
 
     override fun getItemCount(): Int = listTop.size

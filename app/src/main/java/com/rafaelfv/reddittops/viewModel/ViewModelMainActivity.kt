@@ -27,8 +27,4 @@ class ViewModelMainActivity : BaseViewModel() {
 
     fun getChildren(): Children? = children
 
-    fun cleanChildren() {
-        children = null
-    }
-
 }

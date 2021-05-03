@@ -1,6 +1,5 @@
 package com.rafaelfv.reddittops.viewModel
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -48,13 +47,11 @@ class ViewModelListTop : BaseViewModel() {
         if (it.isSuccessful) {
             if (!it.body()?.data?.children.isNullOrEmpty()) {
                 it.body()?.data?.children?.let { children ->
-                    if(children.size >= (counter - 1) * 10){
+                    if (children.size >= (counter - 1) * 10) {
                         val sublist = children.subList((counter - 1) * 10, children.size)
-                        Log.d("viewModelTops", "sublist size = ${sublist.size}")
                         listTops.addAll(sublist)
                         listTopsLiveData.postValue(sublist)
                         counter++
-
                     }
                 }
             }
@@ -67,7 +64,7 @@ class ViewModelListTop : BaseViewModel() {
         listTopsLiveData.postValue(listTops)
     }
 
-    fun removeAll( ) {
+    fun removeAll() {
         counter = 1
         listTops.clear()
         listTopsLiveData.postValue(listTops)

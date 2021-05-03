@@ -17,7 +17,7 @@ import com.rafaelfv.reddittops.utils.*
 import com.rafaelfv.reddittops.viewModel.BaseViewModel
 import com.rafaelfv.reddittops.viewModel.ViewModelMainActivity
 
-class MainActivity : AppCompatActivity(), ListTopCallback, DetailTopCallback {
+class MainActivity : AppCompatActivity(), ListTopCallback {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -119,10 +119,6 @@ class MainActivity : AppCompatActivity(), ListTopCallback, DetailTopCallback {
         if (viewModel.currentDetailAdded) {
             viewModel.currentDetailAdded = false
         }
-    }
-
-    override fun onDetachFragmentDetail() {
-
     }
 
 }

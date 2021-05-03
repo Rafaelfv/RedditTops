@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.rafaelfv.reddittops.R
 
-
 fun FragmentManager.setFragment(
     fragment: Fragment,
     id: Int,
