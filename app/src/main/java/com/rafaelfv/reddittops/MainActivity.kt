@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity(), ListTopCallback, DetailTopCallback {
      * device.
      */
     private var twoPane: Boolean = false
-    private var TAG = "MainActivityX"
     private lateinit var viewModel: ViewModelMainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,7 +112,6 @@ class MainActivity : AppCompatActivity(), ListTopCallback, DetailTopCallback {
                 }
             }
         }
-
     }
 
     override fun onBackPressed() {

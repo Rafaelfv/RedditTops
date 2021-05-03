@@ -96,10 +96,9 @@ class FragmentListTop : Fragment() {
                 }
 
                 override fun onAnimationEnd(animation: Animation?) {
-                    recyclerview_list_top.visibility = View.GONE
                     listTops.clear()
+                    viewModel?.removeAll()
                     adapter.notifyDataSetChanged()
-
                 }
 
                 override fun onAnimationRepeat(animation: Animation?) {
