@@ -8,13 +8,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.rafaelfv.reddittops.R
@@ -25,7 +23,6 @@ import kotlinx.android.synthetic.main.fragment_detail_top.*
 import java.io.File
 import java.io.File.separator
 import java.io.FileOutputStream
-import java.io.IOException
 import java.io.OutputStream
 
 class FragmentDetailTop : Fragment() {
